@@ -29,11 +29,11 @@ public class AdjMatrix extends BitMatrix {
     }
 
     public static BitMatrix readAdj(String name) throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader("Graphs/" + name + ".txt"));
+        BufferedReader br = new BufferedReader(new FileReader("Graphs/"+name+".txt"));
         StringBuilder sb = new StringBuilder();
         String line = br.readLine();
 
-        while(line != null) {
+        while (line != null) {
             sb.append(line);
             sb.append('\n');
             line = br.readLine();
@@ -41,14 +41,15 @@ public class AdjMatrix extends BitMatrix {
         br.close();
 
         String matrixStr = sb.toString();
-        int n = (matrixStr.indexOf('\n')+1)*2;
-        BitMatrix matrix = new BitMatrix(n);
+        int n= (matrixStr.indexOf("\n")+1)/2;
+        BitMatrix matrix= new BitMatrix(n);
 
-        for (int i = 0; i < n; i++)
-            for (int j = 0; j < 2*n-1; j=j+2) {
-                boolean val = Integer.parseInt(matrixStr.substring(i*(2*n-1+1)+j,i*(2*n-1+1)+j+1)) == 1;
-                matrix.setBit(i, j/2, val);
+        for (int i= 0; i < n; i++){
+            for (int j= 0; j < 2*n-1; j=j+2){
+                boolean val= Integer.parseInt(matrixStr.substring(i*(2*n-1+1)+j,i*(2*n-1+1)+j+1)) == 1;
+                matrix.setBit(i,j/2, val);
             }
+        }
         return matrix;
     }
 
