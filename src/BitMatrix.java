@@ -30,4 +30,10 @@ public class BitMatrix {
         return transpose;
     }
 
+    public void printMatrix() {
+        for (int i=0; i < matrix.length; i++) {
+            System.out.println(matrix[i]);
+        }
+    }
+
 }
