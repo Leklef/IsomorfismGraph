@@ -79,4 +79,131 @@ public class ConnectedGraph {
         return tree;
     }
 
+    public static Map areIsomorphic(ConnectedGraph G1, ConnectedGraph G2, int size) {
+        int n = G1.V.length;
+        Map map = new Map(n);
+        int numOp = 0;
+
+        if (n != G2.V.length) {
+            System.out.println("False. Graphs are of different size! ");
+            return null;
+        }
+
+        long totalTime = System.nanoTime();
+        AbstractTree[] trees1 = new AbstractTree[n];
+        AbstractTree[] trees2 = new AbstractTree[n];
+
+        int[] miniMap1 = new int[size];
+
+        for (int a = 0; a < n; a++){
+            miniMap1[G1.V[a].data] = a;
+        }
+
+        int[] miniMap2 = new int[size];
+
+        for (int a = 0; a < n; a++){
+            miniMap2[G2.V[a].data] = a;
+        }
+
+        for (int i = 0; i < n; i++) {
+            trees1[i] = ConnectedGraph.BFS(G1, i, miniMap1);
+            trees2[i] = ConnectedGraph.BFS(G2, i, miniMap2);
+        }
+        long endTime = System.nanoTime();
+        long duration = endTime - totalTime;
+        System.out.println("BFS took " + duration/ Math.pow(10, 9) + " seconds.");
+
+        boolean[] matched = new boolean[n];
+        int mismatched = -1;
+
+        for (int i = 0; i < n; i++) {
+            int length = map.length;
+            for (int j = 0; j < n; j++) {
+                if (!matched[j] && j > mismatched) {
+                    boolean match = true;
+                    match = checkConditions(map, trees1[i], trees2[j], match);
+
+                    if (match) {
+                        map.add(length, i, j);
+                        matched[j] = true;
+                        numOp++;
+                        mismatched = -1;
+                        break;
+                    }
+                }
+            }
+            if (map.length == length) {
+                if (i - 1 < 0) {
+                    System.out.println("False. Graphs are non-isomorphic! ");
+                    return null;
+                }
+                mismatched = map.getValue(i - 1);
+                matched[mismatched] = false;
+                numOp++;
+                map.pop();
+                i = map.length - 1;
+            }
+        }
+
+        System.out.println("True. Graphs are isomorphic! ");
+        return map;
+    }
+
+    public static boolean checkAllEdges(ConnectedGraph G1, ConnectedGraph G2, Map map) {
+        int n = map.length;
+
+        if (checkEdges(G1, G2, map, n))
+            return false;
+
+        Map map2 = new Map(n);
+        for (int i = 0; i < n; i++) {
+            map2.add(i, map.getValue(i), map.getKey(i));
+        }
+
+        if (checkEdges(G2, G1, map2, n))
+            return false;
+
+        System.out.println("Success! Isomorphism confirmed.");
+        return true;
+    }
+
+    private static boolean checkEdges(ConnectedGraph G1, ConnectedGraph G2, Map map, int n) {
+        for (int i = 0; i < n; i++) {
+            int key = map.getKey(i);
+            int value = map.getValue(i);
+
+            if (G1.V[key].children.length != G2.V[value].children.length) {
+                System.out.println("Error. Map sets correspondence between nodes with different number of children! ");
+                return true;
+            }
+
+            for (int j = 0; j < G1.V[key].children.length; j++) {
+                int key1 = G1.V[key].children[j].data;
+                for (int l = 0; l < G1.V.length; l++){
+                    if (G1.V[l].data == key1){
+                        key1 = l;
+                        break;
+                    }
+                }
+                int value1 = map.mapKey(key1);
+
+                value1 = G2.V[value1].data;
+
+                boolean flag = false;
+
+                for (int k = 0; k < G2.V[value].children.length; k++) {
+                    if (G2.V[value].children[k].data == value1) {
+                        flag = true;
+                        break;
+                    }
+                }
+                if (flag == false) {
+                    System.out.println("Error. An edge was not mapped! ");
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
 }
