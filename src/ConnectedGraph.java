@@ -149,6 +149,30 @@ public class ConnectedGraph {
         return map;
     }
 
+    public static boolean checkConditions(Map map, AbstractTree tree1, AbstractTree tree2, boolean match) {
+        if (tree1.height != tree2.height)
+            match = false;
+        else {
+            for (int k = 0; k < tree1.height; k++)
+                if (tree1.width[k] != tree2.width[k]) {
+                    match = false;
+                    break;
+                }
+            if (match)
+                for (int k = 0; k < map.length; k++) {
+                    int key = map.getKey(k);
+                    int value = map.getValue(k);
+                    int keyLevel = tree1.getLevel(key);
+                    int valueLevel = tree2.getLevel(value);
+                    if (keyLevel != valueLevel) { // Check to see if shortest distance is preserved.
+                        match = false;
+                        break;
+                    }
+                }
+        }
+        return match;
+    }
+
     public static boolean checkAllEdges(ConnectedGraph G1, ConnectedGraph G2, Map map) {
         int n = map.length;
 
@@ -197,7 +221,7 @@ public class ConnectedGraph {
                         break;
                     }
                 }
-                if (flag == false) {
+                if (flag) {
                     System.out.println("Error. An edge was not mapped! ");
                     return true;
                 }
