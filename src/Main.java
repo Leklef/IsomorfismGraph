@@ -7,8 +7,8 @@ public class Main {
     public static void main(String[] args) throws IOException {
         System.out.println("Welcome to Graph Isomorphism!");
 
-        BitMatrix adjMatrix = AdjMatrix.readAdj("input1"); //AdjMatrix.makeRandom(14);
-        BitMatrix adjMatrixPerm = AdjMatrix.readAdj("input2"); //AdjMatrix.makeRandom(14);
+        BitMatrix adjMatrix = AdjMatrix.readAdj("input7"); //AdjMatrix.makeRandom(14);
+        BitMatrix adjMatrixPerm = AdjMatrix.readAdj("input8"); //AdjMatrix.makeRandom(14);
         adjMatrix.printMatrix();
         System.out.println();
         adjMatrixPerm.printMatrix();

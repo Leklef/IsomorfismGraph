@@ -119,6 +119,9 @@ public class ConnectedGraph {
         for (int i = 0; i < n; i++) {
             int length = map.length;
             for (int j = 0; j < n; j++) {
+                if (numOp > 200){
+                    System.out.println("Number of operations is " + numOp);
+                }
                 if (!matched[j] && j > mismatched) {
                     boolean match = true;
                     match = checkConditions(map, trees1[i], trees2[j], match);
