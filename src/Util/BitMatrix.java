@@ -1,7 +1,9 @@
+package Util;
+
 import java.util.BitSet;
 
 /**
- * Created by lenar on 30.04.17.
+ * Created by lenar on 01.05.17.
  */
 public class BitMatrix {
 
@@ -20,20 +22,5 @@ public class BitMatrix {
     public boolean getBit(int i, int j) { return this.matrix[i].get(j); }
 
     public int getSize() { return this.matrix.length; }
-
-    public static BitMatrix transpose(BitMatrix matrix) {
-        int n = matrix.getSize();
-        BitMatrix transpose = new BitMatrix(n);
-        for (int i = 0; i < n; i++)
-            for (int j = 0; j < n; j++)
-                transpose.setBit(j, i, true);
-        return transpose;
-    }
-
-    public void printMatrix() {
-        for (int i=0; i < matrix.length; i++) {
-            System.out.println(matrix[i]);
-        }
-    }
 
 }

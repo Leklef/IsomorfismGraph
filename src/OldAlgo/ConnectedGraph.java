@@ -1,3 +1,5 @@
+package OldAlgo;
+
 /**
  * Created by lenar on 30.04.17.
  */
@@ -120,7 +122,7 @@ public class ConnectedGraph {
             int length = map.length;
             for (int j = 0; j < n; j++) {
                 if (numOp > 200){
-                    System.out.println("Number of operations is " + numOp);
+                    //System.out.println("Number of operations is " + numOp);
                 }
                 if (!matched[j] && j > mismatched) {
                     boolean match = true;
@@ -200,7 +202,7 @@ public class ConnectedGraph {
             int value = map.getValue(i);
 
             if (G1.V[key].children.length != G2.V[value].children.length) {
-                System.out.println("Error. Map sets correspondence between nodes with different number of children! ");
+                System.out.println("Error. OldAlgo.Map sets correspondence between nodes with different number of children! ");
                 return true;
             }
 

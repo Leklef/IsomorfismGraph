@@ -1,3 +1,5 @@
+package OldAlgo;
+
 import java.util.Random;
 
 /**

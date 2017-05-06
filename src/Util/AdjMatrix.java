@@ -1,10 +1,12 @@
+package Util;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Random;
 
 /**
- * Created by lenar on 30.04.17.
+ * Created by lenar on 01.05.17.
  */
 public class AdjMatrix extends BitMatrix {
 
@@ -28,8 +30,8 @@ public class AdjMatrix extends BitMatrix {
         return matrix;
     }
 
-    public static BitMatrix readAdj(String name) throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader("Graphs/"+name+".txt"));
+    public static BitMatrix readAdj(String filename) throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader("Graphs/"+filename));
         StringBuilder sb = new StringBuilder();
         String line = br.readLine();
 
@@ -50,6 +52,15 @@ public class AdjMatrix extends BitMatrix {
                 matrix.setBit(i,j/2, val);
             }
         }
+        return matrix;
+    }
+
+    public static int[][] toArray(BitMatrix bit) {
+        int n = bit.matrix.length;
+        int[][] matrix = new int[n][n];
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < n; j++)
+                matrix[i][j] = bit.getBit(i, j)? 1 : 0;
         return matrix;
     }
 
