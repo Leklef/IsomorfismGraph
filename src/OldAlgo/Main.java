@@ -9,8 +9,8 @@ public class Main {
     public static void main(String[] args) throws IOException {
         System.out.println("Welcome to OldAlgo.Struct.Graph Isomorphism!");
 
-        BitMatrix adjMatrix = AdjMatrix.readAdj("supinput1"); //OldAlgo.Util.AdjMatrix.makeRandom(14);
-        BitMatrix adjMatrixPerm = AdjMatrix.readAdj("supinput2"); //OldAlgo.Util.AdjMatrix.makeRandom(14);
+        BitMatrix adjMatrix = AdjMatrix.readAdj("input1"); //OldAlgo.Util.AdjMatrix.makeRandom(14);
+        BitMatrix adjMatrixPerm = AdjMatrix.readAdj("input1"); //OldAlgo.Util.AdjMatrix.makeRandom(14);
 
 //        OldAlgo.ConnectedGraph G1 = new OldAlgo.ConnectedGraph(adjMatrix);
 //        OldAlgo.ConnectedGraph G2 = new OldAlgo.ConnectedGraph(adjMatrixPerm);
