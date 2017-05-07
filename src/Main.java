@@ -13,8 +13,8 @@ public class Main {
     public static void main(String[] args) throws IOException {
         boolean iso;
         long startTime, endTime;
-        g1 = new Graph("input5");
-        g2 = new Graph("input6");
+        g1 = new Graph("supinput1");
+        g2 = new Graph("supinput2");
 
         startTime = System.currentTimeMillis();
         iso = g1.UllmanIsomorphicTest(g2);

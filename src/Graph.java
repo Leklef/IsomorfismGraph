@@ -50,16 +50,19 @@ public class Graph {
         visitCounter = 0;
     }
 
+    //число вершин
     public int nodeCount() //O(1)
     {
         return numNodes;
     }
 
+    //число граней
     public int edgeCount() //O(1)
     {
         return numEdges;
     }
 
+    //посещена ли вершина под таким-то номером
     public boolean isVisited(int node) //O(1)
     {
         if(numNodes==0 || node >= numNodes)
@@ -67,6 +70,7 @@ public class Graph {
         return visited[node];
     }
 
+    //сделать вершины посещенной
     public boolean visit(int node) //O(1)
     {
         if(numNodes==0 || node >= numNodes)
@@ -76,6 +80,7 @@ public class Graph {
         return true;
     }
 
+    //сделать вершины непосещенной
     public boolean unvisit(int node) //O(1)
     {
         if(numNodes==0 || node >= numNodes)
@@ -85,6 +90,7 @@ public class Graph {
         return true;
     }
 
+    //получить число посещенных вершин
     public int numVisited() //O(1)
     {
         return visitCounter;
@@ -105,6 +111,7 @@ public class Graph {
         return deg;
     }
 
+    //получение степень вершины в графе
     public int getDegree(int node) //O(1)
     {
         if(numNodes==0 || node<0 || node>numNodes-1)
@@ -112,11 +119,13 @@ public class Graph {
         return nodeDegrees[node];
     }
 
+    //получение матриц графа
     public int[][] getAdjacencyMatrix() //O(1)
     {
         return vertAdj;
     }
 
+    //сравнение матриц двух графов
     public boolean compareMatrix(Graph toCheck) //O(.5n^2)
     {
         int[][] check = toCheck.getAdjacencyMatrix();
@@ -127,6 +136,7 @@ public class Graph {
         return true;
     }
 
+    //сравнение карт двух графов
     public boolean compareMapping(int[][] second, int[] map) //O(.5n^2)
     {
         for(int i=0; i<numNodes; i++)
@@ -136,6 +146,7 @@ public class Graph {
         return true;
     }
 
+    //Проверка на изоморфизм по алгоритму Ульманна
     public boolean UllmanIsomorphicTest(Graph toCompare)
     {
         if ((numNodes != toCompare.nodeCount()) || (numEdges != toCompare.edgeCount()))
@@ -157,6 +168,7 @@ public class Graph {
         return areIsomorph;
     }
 
+    // рекурсивная процедура поиска матриц перестановок
     private boolean backTrack(int[][] degMap, int i, java.util.Set<Pair> degMatch)
     {
         boolean areIsomorph = false;
@@ -190,6 +202,7 @@ public class Graph {
         return areIsomorph;
     }
 
+    //поиск вперед которая исключает варианты, проверка которых логически необоснованна
     private boolean forwardCheck(int[][] degMap)
     {
         for (int[] row : degMap)
@@ -203,6 +216,5 @@ public class Graph {
         }
         return true;
     }
-
 
 }
