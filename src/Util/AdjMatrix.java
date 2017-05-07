@@ -31,7 +31,7 @@ public class AdjMatrix extends BitMatrix {
     }
 
     public static BitMatrix readAdj(String filename) throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader("Graphs/"+filename));
+        BufferedReader br = new BufferedReader(new FileReader("Graphs/"+filename+".txt"));
         StringBuilder sb = new StringBuilder();
         String line = br.readLine();
 
