@@ -1,4 +1,10 @@
+import Util.AdjMatrix;
+import Util.BitMatrix;
 import Util.GraphInput;
+
+import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by lenar on 07.05.17.
@@ -147,10 +153,13 @@ public class Graph {
     }
 
     //Проверка на изоморфизм по алгоритму Ульманна
-    public boolean UllmanIsomorphicTest(Graph toCompare)
-    {
+    public boolean UllmanIsomorphicTest(Graph toCompare) throws IOException {
         if ((numNodes != toCompare.nodeCount()) || (numEdges != toCompare.edgeCount()))
             return false;
+
+        if (checkBitMatrix(toCompare)) {
+            return false;
+        }
 
         boolean areIsomorph = false;
         int[][] degreeMap = new int[numNodes][numNodes];
@@ -163,15 +172,16 @@ public class Graph {
                     degreeMap[i][j] = 0;
             }
         }
-        java.util.Set<Pair> degMatching = new java.util.HashSet<Pair>();
+        Set<Pair> degMatching = new HashSet<Pair>();
         areIsomorph = backTrack(degreeMap, 0, degMatching);
         return areIsomorph;
     }
 
     // рекурсивная процедура поиска матриц перестановок
-    private boolean backTrack(int[][] degMap, int i, java.util.Set<Pair> degMatch)
+    private boolean backTrack(int[][] degMap, int i, Set<Pair> degMatch)
     {
         boolean areIsomorph = false;
+
         if (i > numNodes-1)
         {
             if (degMatch.size() == numNodes)
@@ -211,8 +221,28 @@ public class Graph {
             for(int num : row)
                 sum += num;
 
+
             if (sum == 0)
                 return false;
+        }
+
+        return true;
+    }
+
+    private boolean checkBitMatrix(Graph g2) throws IOException {
+        BitMatrix m1 = AdjMatrix.readAdj(name);
+        BitMatrix m2 = AdjMatrix.readAdj(g2.name);
+        boolean check = false;
+        for (int i = 0; i < m1.getSize(); i++) {
+            check = false;
+            for (int j = 0; j < m1.getSize(); j++) {
+                if (m1.matrix[i].length()==m2.matrix[j].length()) {
+                    check = true;
+                }
+            }
+            if (!check) {
+                return false;
+            }
         }
         return true;
     }

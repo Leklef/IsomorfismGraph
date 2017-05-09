@@ -29,6 +29,7 @@ public class GraphInput {
             boolean visited[];
             int degree[];
             String graphName = name;
+
             matrix = AdjMatrix.toArray(AdjMatrix.readAdj(filename));
 
             numVert = matrix.length;

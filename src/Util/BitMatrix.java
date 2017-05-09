@@ -7,7 +7,7 @@ import java.util.BitSet;
  */
 public class BitMatrix {
 
-    BitSet[] matrix;
+    public BitSet[] matrix;
 
     public BitMatrix() {}
 
