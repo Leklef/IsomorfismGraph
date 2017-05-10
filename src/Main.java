@@ -13,8 +13,8 @@ public class Main {
     public static void main(String[] args) throws IOException {
         boolean iso;
         long startTime, endTime;
-        g1 = new Graph("input16");
-        g2 = new Graph("input15");
+        g1 = new Graph("input1");
+        g2 = new Graph("input2");
 
         startTime = System.currentTimeMillis();
         iso = g1.UllmanIsomorphicTest(g2);
@@ -27,42 +27,21 @@ public class Main {
         System.out.println("Number of Nodes: "+g1.nodeCount()+ "\nNumber of Edges: "+g1.edgeCount());
         System.out.println("Completion Time: "+ (endTime - startTime)/1000.0 +"s");
 
-        //other algorithm implementation
-        startTime= System.currentTimeMillis();
-        MyIsomorphicTest();
-        endTime = System.currentTimeMillis();
-
-        if(mappings>0)
-            System.out.println(g1.getName()+" IS isomorphic to "+g2.getName());
-        else
-            System.out.println(g1.getName()+" IS NOT isomorphic to "+g2.getName());
-        System.out.println("Completion Time: "+ (endTime - startTime)/1000.0 +"s");
-        System.out.println("Check Mapping Counter: "+checkMapCounter);
-        System.out.println("Total number of mappings: "+mappings+"\n");
+//        //other algorithm implementation
+//        startTime= System.currentTimeMillis();
+//        MyIsomorphicTest();
+//        endTime = System.currentTimeMillis();
+//
+//        if(mappings>0)
+//            System.out.println(g1.getName()+" IS isomorphic to "+g2.getName());
+//        else
+//            System.out.println(g1.getName()+" IS NOT isomorphic to "+g2.getName());
+//        System.out.println("Completion Time: "+ (endTime - startTime)/1000.0 +"s");
+//        System.out.println("Check Mapping Counter: "+checkMapCounter);
+//        System.out.println("Total number of mappings: "+mappings+"\n");
 
         java.awt.Toolkit.getDefaultToolkit().beep();
 
-//
-//        for (int i=0; i<g1.size(); i++) {
-//            System.out.print("-" + (i + 1) + " ");
-//            for (int j = 0; j < g1.size(); j++) {
-//                if (g1.matrix[i][j] == 1)
-//                    System.out.print((j+1)+" ");
-//            }
-//            System.out.println();
-//        }
-//
-//        System.out.println();
-//        System.out.println();
-//
-//        for (int i=0; i<g1.size(); i++) {
-//            System.out.print("-" + (i + 1) + " ");
-//            for (int j = 0; j < g1.size(); j++) {
-//                if (g2.matrix[i][j] == 1)
-//                    System.out.print((j+1)+" ");
-//            }
-//            System.out.println();
-//        }
     }
 
 

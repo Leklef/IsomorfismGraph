@@ -7,10 +7,10 @@ import java.io.IOException;
  */
 public class Main {
     public static void main(String[] args) throws IOException {
-        System.out.println("Welcome to OldAlgo.Struct.Graph Isomorphism!");
+        System.out.println("Welcome to Graph Isomorphism!");
 
-        BitMatrix adjMatrix = AdjMatrix.readAdj("input20"); //OldAlgo.Util.AdjMatrix.makeRandom(14);
-        BitMatrix adjMatrixPerm = AdjMatrix.readAdj("input19"); //OldAlgo.Util.AdjMatrix.makeRandom(14);
+        BitMatrix adjMatrix = AdjMatrix.readAdj("input1"); //OldAlgo.Util.AdjMatrix.makeRandom(14);
+        BitMatrix adjMatrixPerm = AdjMatrix.readAdj("input2"); //OldAlgo.Util.AdjMatrix.makeRandom(14);
 
 //        OldAlgo.ConnectedGraph G1 = new OldAlgo.ConnectedGraph(adjMatrix);
 //        OldAlgo.ConnectedGraph G2 = new OldAlgo.ConnectedGraph(adjMatrixPerm);

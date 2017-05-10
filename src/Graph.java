@@ -107,12 +107,25 @@ public class Graph {
         return name;
     }
 
+//    public int[] countDegrees() //O(n)
+//    {
+//        int[] deg = new int[numNodes];
+//
+//        for(int i=0; i<numNodes; i++)
+//            deg[nodeDegrees[i]]++;
+//
+//        return deg;
+//    }
+
     public int[] countDegrees() //O(n)
     {
         int[] deg = new int[numNodes];
 
         for(int i=0; i<numNodes; i++)
-            deg[nodeDegrees[i]]++;
+            for (int j=0; j < numNodes; j++) {
+                deg[i] += vertAdj[i][j];
+            }
+
 
         return deg;
     }
@@ -157,7 +170,7 @@ public class Graph {
         if ((numNodes != toCompare.nodeCount()) || (numEdges != toCompare.edgeCount()))
             return false;
 
-        if (checkBitMatrix(toCompare)) {
+        if (!checkDegreesMatrix(toCompare)) {
             return false;
         }
 
@@ -229,14 +242,31 @@ public class Graph {
         return true;
     }
 
-    private boolean checkBitMatrix(Graph g2) throws IOException {
-        BitMatrix m1 = AdjMatrix.readAdj(name);
-        BitMatrix m2 = AdjMatrix.readAdj(g2.name);
+    private boolean checkDegreesMatrix(Graph g2) throws IOException {
+        int[] deg1 = countDegrees();
+        int[] deg2 = g2.countDegrees();
+
+        for (int i = 0; i<deg1.length; i++) {
+            System.out.println(deg1[i]);
+        }
+
         boolean check = false;
-        for (int i = 0; i < m1.getSize(); i++) {
+        for (int i = 0; i < deg1.length; i++) {
             check = false;
-            for (int j = 0; j < m1.getSize(); j++) {
-                if (m1.matrix[i].length()==m2.matrix[j].length()) {
+            for (int j = 0; j < deg2.length; j++) {
+                if (deg1[i]==deg2[j]) {
+                    check = true;
+                }
+            }
+            if (!check) {
+                return false;
+            }
+        }
+
+        for (int i = 0; i < deg2.length; i++) {
+            check = false;
+            for (int j = 0; j < deg2.length; j++) {
+                if (deg2[i]==deg1[j]) {
                     check = true;
                 }
             }
