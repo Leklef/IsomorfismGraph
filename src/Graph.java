@@ -242,15 +242,13 @@ public class Graph {
         return true;
     }
 
+    //проверка на разность степеней вершин графа
     private boolean checkDegreesMatrix(Graph g2) throws IOException {
         int[] deg1 = countDegrees();
         int[] deg2 = g2.countDegrees();
 
-        for (int i = 0; i<deg1.length; i++) {
-            System.out.println(deg1[i]);
-        }
-
         boolean check = false;
+        boolean ch2 = false;
         for (int i = 0; i < deg1.length; i++) {
             check = false;
             for (int j = 0; j < deg2.length; j++) {
@@ -258,22 +256,16 @@ public class Graph {
                     check = true;
                 }
             }
-            if (!check) {
+            for (int j = 0; j < deg2.length; j++) {
+                if (deg2[i]==deg1[j]) {
+                    ch2 = true;
+                }
+            }
+            if (!check || !ch2) {
                 return false;
             }
         }
 
-        for (int i = 0; i < deg2.length; i++) {
-            check = false;
-            for (int j = 0; j < deg2.length; j++) {
-                if (deg2[i]==deg1[j]) {
-                    check = true;
-                }
-            }
-            if (!check) {
-                return false;
-            }
-        }
         return true;
     }
 
