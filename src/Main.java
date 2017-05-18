@@ -15,8 +15,8 @@ public class Main {
     public static void main(String[] args) throws IOException {
         boolean iso;
 
-        g1 = new Graph("input600.1");
-        g2 = new Graph("input600.2");
+        g1 = new Graph("input400.1");
+        g2 = new Graph("input400.2");
 
         long totalTime = System.nanoTime();
         iso = g1.UllmanIsomorphicTest(g2);
@@ -44,10 +44,10 @@ public class Main {
             System.out.println(g1.getName()+" IS NOT isomorphic to "+g2.getName());
         System.out.println("Completion Time:" + duration/ Math.pow(10, 9) + " seconds.");
 
-      //  int[][] m1 = AdjMatrix.toArray(AdjMatrix.makeRandom(600));
+        //int[][] m1 = AdjMatrix.toArray(AdjMatrix.makeRandom(400));
 ////        int[][] m2 = AdjMatrix.toArray(AdjMatrix.makeRandom(800));
 ////
-    //    writeMatrix("Graphs/input600.1.txt", m1);
+        //writeMatrix("input400.1.txt", m1);
 //        writeMatrix("input800.2.txt", m2);
 //
 //        for (int i = 0; i < m1.length; i++) {
